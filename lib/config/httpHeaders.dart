@@ -1,5 +1,3 @@
-import 'dart:io';
-
 const HttpHeaders = {
   'Accept': 'application/json, text/plain, */*',
   'Accept-Encoding': 'gzip, deflate, br',
