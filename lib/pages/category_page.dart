@@ -38,6 +38,7 @@ class LeftCategoryNav extends StatefulWidget {
   _LeftCategoryNavState createState() => _LeftCategoryNavState();
 }
 
+//左侧菜单控件区
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
   List list = [];
   @override
@@ -61,6 +62,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     );
   }
 
+//获取左侧菜单数据
   void _getCategory() async {
     await request(GET_CATEGORY).then((val) {
       var data = json.decode(val.toString());
@@ -72,6 +74,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     });
   }
 
+//左侧菜单的子控件
   Widget _leftInkWell(int index) {
     return InkWell(
       onTap: () {},
