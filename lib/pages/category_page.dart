@@ -89,7 +89,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         Provide.value<ChildCategory>(context).getChildCategory(childList);
       },
       child: Container(
-        height: ScreenUtil().setHeight(80),
+        height: ScreenUtil().setHeight(100),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -112,7 +112,6 @@ class RightCategoryNav extends StatefulWidget {
 }
 
 class _RightCategoryNavState extends State<RightCategoryNav> {
-  List<BxMallSubDto> list = [];
   @override
   Widget build(BuildContext context) {
     return Container(
