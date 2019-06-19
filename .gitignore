@@ -3,3 +3,9 @@ pubspec.lock
 flutter_shop.iml
 build/
 .flutter-plugins
+
+#android下面的文件忽略
+android/.gradle/
+android/build/
+android/local.properties
+android/flutter_shop_android.iml
