@@ -48,6 +48,7 @@ class LeftCategoryNav extends StatefulWidget {
 //左侧菜单控件区
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
   List list = [];
+  var listIndex = 0;
   @override
   void initState() {
     _getCategory();
@@ -78,13 +79,20 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       setState(() {
         list = category.data;
       });
+
+      Provide.value<ChildCategory>(context)
+          .getChildCategory(list[0].bxMallSubDto);
     });
   }
 
 //左侧菜单的子控件
   Widget _leftInkWell(int index) {
+    bool isClick = (index == listIndex) ? true : false;
     return InkWell(
       onTap: () {
+        setState(() {
+          listIndex = index;
+        });
         var childList = list[index].bxMallSubDto;
         Provide.value<ChildCategory>(context).getChildCategory(childList);
       },
@@ -92,7 +100,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         height: ScreenUtil().setHeight(100),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: isClick ? Color.fromRGBO(236, 238, 239, 1.0) : Colors.white,
             border:
                 Border(bottom: BorderSide(width: 1, color: Colors.black12))),
         child: Text(
@@ -123,7 +131,10 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(
-                    bottom: BorderSide(width: 1, color: Colors.black12))),
+                    bottom: BorderSide(
+                  width: 1,
+                  color: Colors.black12,
+                ))),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: childCategory.childCategoryList.length,
@@ -138,11 +149,12 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
   }
 }
 
+//右侧顶部菜单子item
 Widget _rightInkWell(BxMallSubDto item) {
   return InkWell(
     onTap: () {},
     child: Container(
-      padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+      padding: EdgeInsets.fromLTRB(10, 10, 5, 10),
       child: Text(
         item.mallSubName,
         style: TextStyle(fontSize: ScreenUtil().setSp(26)),
