@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+//分类页面--右侧的商品列表数据模型
 class CategoryGoodsListModel {
   String code;
   String message;

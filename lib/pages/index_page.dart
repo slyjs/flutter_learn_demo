@@ -6,6 +6,7 @@ import 'cart_page.dart';
 import 'member_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//工程的首页面
 class IndexPage extends StatefulWidget {
   @override
   _IndexPageState createState() => _IndexPageState();

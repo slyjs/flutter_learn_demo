@@ -1,3 +1,4 @@
+//http 请求的header头设置
 const HttpHeaders = {
   'Accept': 'application/json, text/plain, */*',
   'Accept-Encoding': 'gzip, deflate, br',

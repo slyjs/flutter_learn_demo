@@ -6,6 +6,7 @@ import 'dart:io';
 import '../config/service_url.dart';
 import '../config/httpHeaders.dart';
 
+// 公用的网络请求方法
 Future request(rqUrl, {formData}) async {
   try {
     print('开始获取数据...........rqurl==' + rqUrl);

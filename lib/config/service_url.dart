@@ -1,3 +1,4 @@
+//业务逻辑接口的管理
 const serviceUrl = "http://baixingliangfan.cn/baixing/";
 
 const HOMEPAGE_CONTENT = 'homePageContent'; //首页---商店首页信息

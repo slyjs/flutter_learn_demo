@@ -1,3 +1,4 @@
+//分类页面--左侧菜单的数据模型
 class CategoryModel {
   String code;
   String message;
