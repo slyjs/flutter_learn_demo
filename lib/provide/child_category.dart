@@ -9,10 +9,15 @@ class RightChildTopCategoryProvide with ChangeNotifier {
   int childIndex = 0;
   String leftCategoryId = '4';
   String subId = ""; //小类的id
+  String noMoreText = "";
+  int page = 1;
   getChildCategory(List<BxMallSubDto> list, String leftCategoryid) {
+    page = 1;
+    noMoreText = "";
+    subId = "";
     leftCategoryId = leftCategoryid;
     BxMallSubDto all = BxMallSubDto();
-    all.mallSubId = '00';
+    all.mallSubId = '';
     all.mallCategoryId = '00';
     all.mallSubName = '全部';
     all.comments = 'null';
@@ -24,6 +29,16 @@ class RightChildTopCategoryProvide with ChangeNotifier {
   changeChildIndex(index, String subid) {
     childIndex = index;
     subId = subid;
+    notifyListeners();
+  }
+
+//上拉的时候进行page加1
+  addPage() {
+    page++;
+  }
+
+  changeNoMoreTexgt(String txt) {
+    noMoreText = txt;
     notifyListeners();
   }
 }

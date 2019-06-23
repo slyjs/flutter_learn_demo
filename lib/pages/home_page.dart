@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_shop/routers/application.dart';
 import '../config/service_url.dart';
 import '../service/service_method.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -139,7 +140,10 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((val) {
         return InkWell(
-          onTap: null,
+          onTap: () {
+            Application.router
+                .navigateTo(context, "/detail?id=${val['goodsId']}");
+          },
           child: Container(
             width: ScreenUtil().setWidth(370),
             color: Colors.white,

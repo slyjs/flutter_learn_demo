@@ -4,12 +4,14 @@ const serviceUrl = "http://baixingliangfan.cn/baixing/";
 const HOMEPAGE_CONTENT = 'homePageContent'; //首页---商店首页信息
 const HOMEPAGE_BELOW_CONTENT = 'homePageBelowContent'; //首页---商城首页热卖商品拉取
 const GET_CATEGORY = "getCategory"; //分类页面--获取左侧菜单接口
-const GET_MALL_GOODS = "getMallGoods";
+const GET_MALL_GOODS = "getMallGoods"; //分类页面--获取商品列表
+const GET_DETAILS = 'getGoodDetailById'; //获取商品的详细信息
 const servicePath = {
   HOMEPAGE_CONTENT: serviceUrl + 'bxAppIndex/getHomePageContent',
   HOMEPAGE_BELOW_CONTENT: serviceUrl + "wxmini/homePageBelowConten",
   GET_CATEGORY: serviceUrl + 'wxmini/getCategory',
   GET_MALL_GOODS: serviceUrl + 'wxmini/getMallGoods',
+  GET_DETAILS: serviceUrl + 'wxmini/getGoodDetailById',
 };
 
 const getCategoryData =
