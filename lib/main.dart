@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/provide/cart.dart';
 import 'package:flutter_shop/provide/child_category.dart';
 import 'package:flutter_shop/provide/details_info.dart';
 import 'package:flutter_shop/routers/application.dart';
@@ -14,13 +15,15 @@ void main() {
   var childCategoryProvide = RightChildTopCategoryProvide();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
   var detailsInfoProvide = DetailsInfoProvide();
+  var cartProvide = CartProvide();
   var providers = Providers();
   providers
     ..provide(
         Provider<RightChildTopCategoryProvide>.value(childCategoryProvide))
     ..provide(
         Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide))
-    ..provide(Provider<DetailsInfoProvide>.value(detailsInfoProvide));
+    ..provide(Provider<DetailsInfoProvide>.value(detailsInfoProvide))
+    ..provide(Provider<CartProvide>.value(cartProvide));
   runApp(ProviderNode(
     child: MyApp(),
     providers: providers,
