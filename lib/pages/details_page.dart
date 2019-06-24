@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/pages/details_page/details_explain.dart';
 import 'package:flutter_shop/provide/details_info.dart';
 import 'package:path/path.dart';
 import 'package:provide/provide.dart';
+import './details_page/details_top_area.dart';
+import 'details_page/details_tabbar.dart';
 
 class DetailsPage extends StatelessWidget {
   String goodsId = "";
@@ -25,8 +28,12 @@ class DetailsPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Container(
-              child: Column(
-                children: <Widget>[],
+              child: ListView(
+                children: <Widget>[
+                  DetailsTopArea(),
+                  DetailsExplain(),
+                  DetailsTabbar(),
+                ],
               ),
             );
           } else {
