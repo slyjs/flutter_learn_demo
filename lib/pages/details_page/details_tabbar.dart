@@ -10,17 +10,23 @@ class DetailsTabbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provide<DetailsInfoProvide>(
       builder: (context, child, val) {
-        return Row(
-          children: <Widget>[
-            _myTabBarLeft(
-              context,
-              Provide.value<DetailsInfoProvide>(context).isLeft,
-            ),
-            _myTabBarRight(
-              context,
-              Provide.value<DetailsInfoProvide>(context).isRight,
-            ),
-          ],
+        var isLeft = Provide.value<DetailsInfoProvide>(context).isLeft;
+        var isRight = Provide.value<DetailsInfoProvide>(context).isRight;
+        return Container(
+          margin: EdgeInsets.only(
+            top: 15,
+            bottom: 20,
+          ),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  _myTabBarLeft(context, isLeft),
+                  _myTabBarRight(context, isRight),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );
@@ -28,7 +34,9 @@ class DetailsTabbar extends StatelessWidget {
 
   Widget _myTabBarLeft(BuildContext context, bool isLeft) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<DetailsInfoProvide>(context).changeLeftAndRight('left');
+      },
       child: Container(
         padding: EdgeInsets.all(10),
         alignment: Alignment.center,
@@ -50,7 +58,9 @@ class DetailsTabbar extends StatelessWidget {
 
   Widget _myTabBarRight(BuildContext context, bool isRight) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<DetailsInfoProvide>(context).changeLeftAndRight('right');
+      },
       child: Container(
         padding: EdgeInsets.all(10),
         alignment: Alignment.center,

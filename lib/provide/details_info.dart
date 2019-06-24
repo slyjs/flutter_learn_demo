@@ -10,7 +10,7 @@ class DetailsInfoProvide with ChangeNotifier {
   //商品详情页面的详情和评论tabbar的状态切换 变量
   bool isLeft = true;
   bool isRight = false;
-  getGoodsInfo(String goodsId) {
+  getGoodsInfo(String goodsId) async {
     var formData = {'goodId': goodsId};
     request(GET_DETAILS, formData: formData).then((val) {
       var responseData = json.decode(val.toString());
@@ -28,5 +28,6 @@ class DetailsInfoProvide with ChangeNotifier {
       isLeft = false;
       isRight = true;
     }
+    notifyListeners();
   }
 }
