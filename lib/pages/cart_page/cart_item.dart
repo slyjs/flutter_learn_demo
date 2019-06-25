@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 import '../../model/cartinfo.dart';
 import 'cart_count.dart';
+import '../../provide/cart.dart';
 
 // 购物车子条目
 class CartItem extends StatelessWidget {
@@ -25,7 +27,7 @@ class CartItem extends StatelessWidget {
             _getCheckBox(context, cartItem),
             _getItemImage(cartItem),
             _getCartGoodsName(cartItem),
-            _getCartPrice(cartItem),
+            _getCartPrice(context, cartItem),
           ],
         ),
       ),
@@ -33,13 +35,15 @@ class CartItem extends StatelessWidget {
   }
 
   //子条目的复选框控件
-  Widget _getCheckBox(context, cartItem) {
+  Widget _getCheckBox(context, CartInfoModel cartItem) {
     return Container(
       child: Checkbox(
         value: cartItem.isCheck,
         activeColor: Colors.pink,
         onChanged: (bool val) {
           //复选框的点击事件
+          cartItem.isCheck = val;
+          Provide.value<CartProvide>(context).changeCheckState(cartItem);
         },
       ),
     );
@@ -76,7 +80,7 @@ class CartItem extends StatelessWidget {
   }
 
 // 商品价格
-  Widget _getCartPrice(cartItem) {
+  Widget _getCartPrice(context, cartItem) {
     return Container(
       width: ScreenUtil().setWidth(150),
       alignment: Alignment.centerRight,
@@ -85,7 +89,10 @@ class CartItem extends StatelessWidget {
           Text('￥${cartItem.price}'),
           Container(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Provide.value<CartProvide>(context)
+                    .deleteOneGoods(cartItem.goodsId);
+              },
               child: Icon(
                 Icons.delete_forever,
                 color: Colors.black26,
