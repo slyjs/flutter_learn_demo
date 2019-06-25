@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//购物车页面底部
 class CartBottom extends StatelessWidget {
   const CartBottom({Key key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class CartBottom extends StatelessWidget {
     );
   }
 
+  //全选按钮
   Widget _selectAllBtn() {
     return Container(
       child: Row(
@@ -37,6 +39,7 @@ class CartBottom extends StatelessWidget {
     );
   }
 
+  //商品总价格
   Widget _allPriceArea() {
     return Container(
       width: ScreenUtil().setWidth(400),

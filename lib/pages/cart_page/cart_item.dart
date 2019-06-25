@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../model/cartinfo.dart';
+import 'cart_count.dart';
 
+// 购物车子条目
 class CartItem extends StatelessWidget {
   final CartInfoModel cartItem;
   const CartItem({Key key, this.cartItem}) : super(key: key);
@@ -20,7 +22,7 @@ class CartItem extends StatelessWidget {
                 Border(bottom: BorderSide(width: 1, color: Colors.black12))),
         child: Row(
           children: <Widget>[
-            _getCheckBox(),
+            _getCheckBox(context, cartItem),
             _getItemImage(cartItem),
             _getCartGoodsName(cartItem),
             _getCartPrice(cartItem),
@@ -31,10 +33,10 @@ class CartItem extends StatelessWidget {
   }
 
   //子条目的复选框控件
-  Widget _getCheckBox() {
+  Widget _getCheckBox(context, cartItem) {
     return Container(
       child: Checkbox(
-        value: true,
+        value: cartItem.isCheck,
         activeColor: Colors.pink,
         onChanged: (bool val) {
           //复选框的点击事件
@@ -58,6 +60,7 @@ class CartItem extends StatelessWidget {
     );
   }
 
+  //商品名称
   Widget _getCartGoodsName(cartItem) {
     return Container(
       width: ScreenUtil().setWidth(300),
@@ -66,11 +69,13 @@ class CartItem extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(cartItem.goodsName),
+          CartCount(),
         ],
       ),
     );
   }
 
+// 商品价格
   Widget _getCartPrice(cartItem) {
     return Container(
       width: ScreenUtil().setWidth(150),

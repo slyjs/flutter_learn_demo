@@ -29,14 +29,15 @@ class CartProvide with ChangeNotifier {
         'goodsName': goodsName,
         'count': count,
         'price': price,
-        'images': images
+        'images': images,
+        'isCheck': true,
       };
       tempList.add(newGoods);
       cartModelList.add(new CartInfoModel.fromJson(newGoods));
     }
     cartString = json.encode(tempList).toString();
-    print(cartString);
-    print(cartModelList.toString());
+    // print(cartString);
+    // print(cartModelList.toString());
     prefs.setString(cartKeySP, cartString);
 
     notifyListeners();
@@ -45,7 +46,7 @@ class CartProvide with ChangeNotifier {
   remove() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(cartKeySP);
-    print('清空完成');
+    // print('清空完成');
     notifyListeners();
   }
 
