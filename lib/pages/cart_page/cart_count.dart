@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/model/cartinfo.dart';
+import 'package:provide/provide.dart';
+import '../../provide/cart.dart';
 
 //购物车页面--商品的加减控件
 class CartCount extends StatelessWidget {
-  const CartCount({Key key}) : super(key: key);
+  final CartInfoModel cartItem;
+  const CartCount({Key key, this.cartItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +21,9 @@ class CartCount extends StatelessWidget {
         child: Row(
           children: <Widget>[
             //商品的加减控件区域
-            _reduceBtn(),
-            _countArea(),
-            _addBtn(),
+            _reduceBtn(context, cartItem),
+            _countArea(context, cartItem),
+            _addBtn(context, cartItem),
           ],
         ),
       ),
@@ -27,15 +31,18 @@ class CartCount extends StatelessWidget {
   }
 
 //减少按钮
-  Widget _reduceBtn() {
+  Widget _reduceBtn(context, CartInfoModel cartItem) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<CartProvide>(context)
+            .addOrReduceAction(cartItem, 'reduce');
+      },
       child: Container(
         width: ScreenUtil().setWidth(45),
         height: ScreenUtil().setHeight(45),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: cartItem.count == 1 ? Colors.black12 : Colors.white,
           border: Border(
             right: BorderSide(
               width: 1,
@@ -43,15 +50,17 @@ class CartCount extends StatelessWidget {
             ),
           ),
         ),
-        child: Text('-'),
+        child: cartItem.count == 1 ? Text('') : Text('-'),
       ),
     );
   }
 
 //添加按钮
-  Widget _addBtn() {
+  Widget _addBtn(context, CartInfoModel cartItem) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Provide.value<CartProvide>(context).addOrReduceAction(cartItem, 'add');
+      },
       child: Container(
         width: ScreenUtil().setWidth(45),
         height: ScreenUtil().setHeight(45),
@@ -71,13 +80,13 @@ class CartCount extends StatelessWidget {
   }
 
   //显示数字的区域
-  Widget _countArea() {
+  Widget _countArea(context, CartInfoModel cartItem) {
     return Container(
       width: ScreenUtil().setWidth(70),
       height: ScreenUtil().setHeight(45),
       alignment: Alignment.center,
       color: Colors.white,
-      child: Text('1'),
+      child: Text('${cartItem.count}'),
     );
   }
 }
