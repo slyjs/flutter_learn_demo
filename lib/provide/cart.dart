@@ -19,14 +19,21 @@ class CartProvide with ChangeNotifier {
     var temp = cartString == null ? [] : json.decode(cartString.toString());
     List<Map> tempList = (temp as List).cast();
     var isHave = false;
-    int ival = 0;
+    int tempIndex = 0;
+    allPrice = 0;
+    allGoodsCount = 0;
     tempList.forEach((item) {
       if (item['goodsId'] == goodsId) {
         isHave = true;
-        tempList[ival]['count'] = item['count'] + 1;
-        cartModelList[ival].count++;
+        tempList[tempIndex]['count'] = item['count'] + 1;
+        cartModelList[tempIndex].count++;
       }
-      ival++;
+      if (item['isCheck']) {
+        allPrice +=
+            (cartModelList[tempIndex].price * cartModelList[tempIndex].count);
+        allGoodsCount += cartModelList[tempIndex].count;
+      }
+      tempIndex++;
     });
 
     if (!isHave) {
@@ -40,6 +47,8 @@ class CartProvide with ChangeNotifier {
       };
       tempList.add(newGoods);
       cartModelList.add(new CartInfoModel.fromJson(newGoods));
+      allPrice += count * price;
+      allGoodsCount += count;
     }
     cartString = json.encode(tempList).toString();
     // print(cartString);
